@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="styles.css">
+
+</head>
+<body>
+
+<div class=headerNormal>
+<h1 id="head">Welcome to an exercise in boredom</h1>
+<p id="tail">We kindly ask you to stare at this screen for 4 minutes. At the end you will complete a survey about your experience. Don't look away!</p>
+
+
+
+<p id="demo" class="kindaNormal"></p>
+</div>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfeFWWX-RGAYu8HWvgM3GGOa1U4EQgHcYV1-H6uGAUQ3Z2cTw/viewform?embedded=true" id="mainForm" width="640" height="991" frameborder="0" marginheight="0" marginwidth="0">Läser in …</iframe>
+<script>
+
+
+      setTimeout(function () {
+
+        var head=document.getElementById("head");
+        var tail=document.getElementById("tail");
+        var demo=document.getElementById("demo");
+
+        head.style.animationName="toneout";
+        tail.style.animationName="toneout";
+        head.style.opacity="0.0";
+        tail.style.opacity="0.0";
+        demo.style.animationName="move";
+        demo.style.fontSize="50px";
+
+      }, 7000);
+
+
+var countDownDate = new Date();
+countDownDate.setTime(countDownDate.getTime()+240*1000);
+
+var x = setInterval(function() {
+
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML =  minutes + ":" + seconds;
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "";
+   var mainForm= document.getElementById("mainForm");
+   mainForm.style.animationName="tonein";
+   mainForm.style.opacity="1.0";
+  }
+}, 1000);
+
+
+</script>
+</body>
+</html>
