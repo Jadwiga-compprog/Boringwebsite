@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="styles.css">
+
+</head>
+<body>
+
+<div class=headerNormal>
+  <p id="pointCounter"> points: </p>
+<h1 id="head">Welcome to an exercise in boredom</h1>
+<p id="tail">We kindly ask you to stare at this screen for 4 minutes. At the end you will complete a survey about your experience. Don't look away!</p>
+
+<div id="pointValue">0</div>
+<div id="displayPoints">
+<p> 1 minute passed! +<div id="pointValueDisplay">0</div></p>
+</div>
+<script>
+function animateValue(id, start, end, duration) {
+    var range = end - start;
+    var current = start;
+    var increment = end > start? 1 : -1;
+    var stepTime = Math.abs(Math.floor(duration / range));
+    var obj = document.getElementById(id);
+    var timer = setInterval(function() {
+        current += increment;
+        obj.innerHTML = current;
+        if (current == end) {
+            clearInterval(timer);
+        }
+    }, stepTime);
+}
+
+
+function particleEffect(x,y,tilt) {
+// Some random colors
+const colors = ["#FFE935"];
+
+const numBalls = 50;
+const balls = [];
+
+for (let i = 0; i < numBalls; i++) {
+  let ball = document.createElement("div");
+  ball.className="ballClass";
+  ball.style.opacity="1.0";
+  ball.classList.add("ball");
+  ball.style.background = colors[Math.floor(Math.random() * colors.length)];
+  //ball.style.left = `${Math.floor(Math.random() * 100)}vw`;
+//  ball.style.top = `${Math.floor(Math.random() * 100)}vh`;
+//  ball.style.transform = `scale(${Math.random()})`;
+  ball.style.width = `${0.5}em`;
+  ball.style.height = ball.style.width;
+  ball.style.top=y+"%";
+  ball.style.left=x+"%";
+  balls.push(ball);
+  document.body.append(ball);
+}
+
+
+balls.forEach((el, i, ra) => {
+  let to = {
+    x: Math.random() * (i % 2 === 0 ? -10 : 10),
+    y:-12.5*Math.random()
+  };
+
+  let anim = el.animate(
+    [
+      { transform: "translate(0, 0)" },
+      { transform: `translate(${to.x}rem, ${to.y}rem)` }
+    ],
+    {
+      duration: 2250, // random duration
+      direction: "alternate",
+      fill: "both",
+      iterations: 1,
+      easing: "ease-in-out"
+    }
+  );
+});
+setTimeout(function () {
+
+  for(let i=0; i<numBalls; i++) {
+    balls[i].style.animationName="toneout";
+    balls[i].style.animationDuration="2s";
+    balls[i].style.opacity="0.0";
+}
+
+
+}, 600);
+
+
+}
+</script>
+<!-- END PARTICLES -->
+<p id="demo" class="kindaNormal"></p>
+</div>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc73KL5bpkyFMoPK6SLYA9a7aA1Rbuu-lPU5zz0uUQeNIJDhw/viewform?embedded=true" id="mainForm" width="640" height="962" frameborder="0" marginheight="0" marginwidth="0">Läser in …</iframe>
+<script>
+
+
+      setTimeout(function () {
+
+        var head=document.getElementById("head");
+        var tail=document.getElementById("tail");
+        var demo=document.getElementById("demo");
+
+        head.style.animationName="toneout";
+        tail.style.animationName="toneout";
+        head.style.opacity="0.0";
+        tail.style.opacity="0.0";
+        demo.style.animationName="move";
+        demo.style.fontSize="50px";
+
+      }, 7000);
+
+
+var countDownDate = new Date();
+countDownDate.setTime(countDownDate.getTime()+240*1000);
+var intervals=0;
+var x = setInterval(function() {
+
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  var pointCounter=document.getElementById("pointCounter");
+  var timer=document.getElementById("demo");
+  var displayPoints=document.getElementById("displayPoints");
+  if(seconds%59===0&&minutes>0) {
+
+    pointCounter.style.animationName="gogreen";
+    pointCounter.style.animationDuration="3s";
+    animateValue("pointValue",500*intervals,500*(intervals+1),1000);
+    animateValue("pointValueDisplay",500*intervals,500*(intervals+1),1000);
+    intervals++;
+    timer.style.textShadow="0 0 8px #000";
+    timer.style.color="transparent";
+    displayPoints.style.animationName="tonein";
+    displayPoints.style.animationDuration="1s";
+    displayPoints.style.opacity="1.0";
+    particleEffect(50,50,0);
+    particleEffect(51,50,5);
+    particleEffect(49,50,-5);
+  }
+  if((seconds-3)%4===0) {
+    pointCounter.style.animationName="wait";
+    timer.style.textShadow="0 0 0px #000";
+    timer.style.color="black";
+    displayPoints.style.animationName="toneout";
+    displayPoints.style.opacity="0.0";
+  }
+
+
+
+  // Display the result in the element with id="demo"
+  timer.innerHTML =  minutes + ":" + seconds;
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "";
+   var mainForm= document.getElementById("mainForm");
+   mainForm.style.animationName="tonein";
+   mainForm.style.opacity="1.0";
+  }
+}, 1000);
+
+
+</script>
+</body>
+</html>

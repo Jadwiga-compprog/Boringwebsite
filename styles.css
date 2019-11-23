@@ -1,0 +1,114 @@
+@font-face {
+  font-family: "jhenghei";
+  src: url(fonts/jh.ttf) format("truetype");
+}
+body {
+  background-color: rgb(75,75,75);
+}
+div.text {
+
+}
+
+
+
+div.headerNormal {
+      font-family: "jhenghei",jh;
+      text-align: center;
+      left:20px;
+
+
+}
+#tail {
+  animation-name: wait;
+  animation-duration: 1s;
+}
+#head {
+  animation-name: larger;
+  animation-duration: 1s;
+  font-size: 50px;
+}
+#demo {
+  animation-name: wait;
+  animation-duration:1s;
+
+}
+#mainForm  {
+  font-family: "jhenghei",jh;
+  orientation:center;
+
+  animation-name: wait;
+  animation-duration: 5s;
+  opacity: 0.0;
+
+}
+#pointCounter {
+  position: absolute;
+   left: 85%;
+   font-size:18px;
+   top: -1%;
+   animation-name: wait;
+   animation-duration: 1s;
+}
+#pointValue {
+  position: absolute;
+   left: 90%;
+   font-size:18px;
+   top: 1%;
+   animation-name: wait;
+   animation-duration: 1s;
+}
+#pointValueDisplay {
+  position: center;
+
+   font-size:25px;
+
+   animation-name: wait;
+   animation-duration: 1s;
+}
+.ball {
+  position: absolute;
+  border-radius: 100%;
+  opacity: 0.7;
+}
+#displayPoints {
+  opacity: 0.0;
+  position: center;
+  font-size:25px;
+}
+
+#complete {
+  opacity:0.0;
+  font-size:25px;
+  position:center;
+  animation-duration:3s;
+}
+
+/* Standard syntax */
+@keyframes larger {
+  from {font-size:20px;opacity: 0.0;}
+  to {font-size: 50px;opacity: 1.0}
+}
+@keyframes move {
+  from {top:20px;font-size:20px;}
+  to {top:0px;font-size: 50px;}
+}
+@keyframes toneout {
+  from {opacity: 1.0;}
+  to {opacity: 0.0;}
+}
+@keyframes tonein {
+  from {opacity: 0.0;}
+  to {opacity: 1.0;}
+}
+@keyframes wait {
+
+}
+@keyframes gogreen {
+  0% {color:#000000}
+  50% {color:#00FF26}
+  100% {color:#000000}
+}
+@@keyframes moveToScoreboard {
+  from {left:50%;top:50%}
+  to {left:90%;top:1%}
+}
